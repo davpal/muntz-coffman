@@ -68,5 +68,24 @@ public class TaskTest {
         task.calculateLevel();
         
         assertEquals(13, task.getLevel());
+        assertEquals(10, task1.getLevel());
+    }
+    
+    @Test
+    public void testTaskLevelChange(){
+        Task task = new Task(0, 3);
+        Task task1 = new Task(1, 4);
+        Task task2 = new Task(2, 5);
+        Task task3 = new Task(3, 6);
+        
+        task.addChild(task1);
+        task1.addChild(task2);
+        task1.addChild(task3);
+        
+        task.calculateLevel();
+        
+        task.execute(4);
+        
+        assertEquals(13 - 4, task.getLevel());
     }
 }

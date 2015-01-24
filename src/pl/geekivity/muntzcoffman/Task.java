@@ -29,6 +29,7 @@ public class Task extends Vertex implements Comparable {
     
     public void execute(int cpuTime) {
         elapsedTime -= cpuTime;
+        level -= cpuTime;
     }
     
     public int getLevel() {
