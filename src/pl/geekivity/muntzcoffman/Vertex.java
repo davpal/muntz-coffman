@@ -21,8 +21,15 @@ public class Vertex {
         number = n;
     }
     
+    private List<Vertex> parents = new ArrayList<Vertex>();
+    
+    public void addParent(Vertex t){
+        parents.add(t);
+    }
+    
     public void addChild(Vertex v){
         children.add(v);
+        v.addParent(this);
     }
     
     public List<Vertex> getChildren(){
