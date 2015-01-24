@@ -88,4 +88,16 @@ public class TaskTest {
         
         assertEquals(13 - 4, task.getLevel());
     }
+    
+    @Test
+    public void testTaskBlocking(){
+        Task task = new Task(0, 1);
+        Task task1 = new Task(0, 2);
+        
+        task.addChild(task1);
+        
+        assertTrue(task1.isBlocked());
+        assertFalse(task.isBlocked());
+    }
+    
 }

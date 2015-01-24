@@ -5,10 +5,12 @@
  */
 package pl.geekivity.muntzcoffman;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import static java.util.Collections.list;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -25,6 +27,10 @@ public class Task extends Vertex implements Comparable {
     
     public boolean isDone(){
         return elapsedTime == 0;
+    }
+    
+    public boolean isBlocked(){
+        return !parents.isEmpty();
     }
     
     public void execute(int cpuTime) {
