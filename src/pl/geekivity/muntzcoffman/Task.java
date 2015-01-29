@@ -37,6 +37,7 @@ public class Task extends Vertex implements Comparable {
         elapsedTime -= cpuTime;
         level -= cpuTime;
         if(isDone()){
+            level = 0;
             Iterator it = children.iterator();
             while(it.hasNext()){
                 Task task = (Task)it.next();

@@ -18,7 +18,7 @@ public class Vertex {
     
     public Vertex(int n){
         super();
-        number = n;
+        number = n + 1;
     }
     
     List<Vertex> parents = new ArrayList<>();
