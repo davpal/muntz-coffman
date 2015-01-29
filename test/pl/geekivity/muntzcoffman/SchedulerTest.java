@@ -23,11 +23,11 @@ import static org.junit.Assert.*;
  */
 public class SchedulerTest {
     private int[][] matrix;
-    private int[] times;
+    private double[] times;
     
     public SchedulerTest() {
         matrix = new int[12][12];
-        times = new int[12];
+        times = new double[12];
         
         Scanner in = null;
         try {
@@ -85,5 +85,23 @@ public class SchedulerTest {
         
         while(sched.hasNextTask())
             sched.next();
+    }
+    
+    @Test
+    public void testSchedulingBetaRatio(){
+        int[][] m = new int[4][4];
+        double[] t = new double[] {0.5, 0.5, 0.5, 0.5};
+        Scheduler sched = new Scheduler(m, t, 2);
+        sched.next();
+        assertFalse(sched.hasNextTask());
+    }
+    
+    @Test
+    public void testScheduleMoreCPU(){
+        int[][] m = new int[4][4];
+        double[] t = new double[] {0.75, 0.75, 0.75, 0.75};
+        Scheduler sched = new Scheduler(m, t, 3);
+        sched.next();
+        assertFalse(sched.hasNextTask());
     }
 }

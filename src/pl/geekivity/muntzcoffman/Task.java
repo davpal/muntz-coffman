@@ -17,16 +17,16 @@ import java.util.List;
  * @author dave
  */
 public class Task extends Vertex implements Comparable {
-    private int time, elapsedTime;
+    private double time, elapsedTime;
     private double level;
     
-    public Task(int n, int t){
+    public Task(int n, double t){
         super(n);
         level = elapsedTime = time = t;
     }
     
     public boolean isDone(){
-        return elapsedTime == 0;
+        return elapsedTime < 0.000001;
     }
     
     public boolean isBlocked(){

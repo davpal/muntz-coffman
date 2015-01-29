@@ -8,6 +8,7 @@ package pl.geekivity.muntzcoffman;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  *
@@ -18,7 +19,7 @@ class Scheduler {
     ArrayList<Task> running = new ArrayList<>();
     int time, cpuNumber, idleCpus;
 
-    Scheduler(int[][] matrix, int[] times, int cpus) {
+    Scheduler(int[][] matrix, double[] times, int cpus) {
         idleCpus = cpuNumber = cpus;
         
         for(int i = 0; i < times.length; ++i)
@@ -47,18 +48,27 @@ class Scheduler {
             }
         });
         
-        int i = 0;
-        System.out.print(time + ": Executing tasks: ");
-        while(idleCpus > 0){
-            System.out.print(tasks.get(i).toString());
-            tasks.get(i).execute(1);
+        // TODO: Collect process with the highest priority
+        ArrayList<Task> current = new ArrayList<>();
+        current.add(tasks.get(0));
+        --idleCpus;
+        int i = 1;
+        while(i < tasks.size() && (tasks.get(i).compareTo(current.get(i - 1)) == 0 || idleCpus > 0)){
+            current.add(tasks.get(i)); // add top priority task
             --idleCpus;
-            if(tasks.get(i).isDone()){
+            ++i;
+        }
+        
+        System.out.print(time + ": Executing tasks: ");
+        double beta = current.size() / cpuNumber;
+        for(Task t : current) {
+            System.out.print(t);
+            t.execute(beta);
+            if(t.isDone()){
                 System.out.print("* ");
-                tasks.remove(i);
+                tasks.remove(t);
                 continue;
             } else System.out.print(" ");
-            ++i;
         }
         
         idleCpus = cpuNumber;
