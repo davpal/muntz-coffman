@@ -69,9 +69,9 @@ public class SchedulerTest {
     @Test
     public void testTaskLoading(){
         Scheduler sched = new Scheduler(matrix, times, 2);
-        assertEquals(25, sched.getTask(0).getLevel());
-        assertEquals(14, sched.getTask(4).getLevel());
-        assertEquals(21, sched.getTask(2).getLevel());
+        assertTrue((25 - sched.getTask(0).getLevel()) < 0.000001);
+        assertTrue((14 - sched.getTask(4).getLevel()) < 0.000001);
+        assertTrue((21 -  sched.getTask(2).getLevel())< 0.000001);
     }
     
     @Test
@@ -80,8 +80,8 @@ public class SchedulerTest {
         
         sched.next();
         
-        assertEquals(24, sched.getTask(0).getLevel());
-        assertEquals(6, sched.getTask(1).getLevel());
+        assertTrue((24 - sched.getTask(0).getLevel()) < 0.000001);
+        assertTrue((6 -sched.getTask(1).getLevel()) < 0.000001);
         
         while(sched.hasNextTask())
             sched.next();

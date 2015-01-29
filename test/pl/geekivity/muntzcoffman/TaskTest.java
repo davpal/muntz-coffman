@@ -67,8 +67,8 @@ public class TaskTest {
         
         task.calculateLevel();
         
-        assertEquals(13, task.getLevel());
-        assertEquals(10, task1.getLevel());
+        assertTrue((13 - task.getLevel()) < 0.000001);
+        assertTrue((10 - task.getLevel()) < 0.000001);
     }
     
     @Test
@@ -86,7 +86,7 @@ public class TaskTest {
         
         task.execute(4);
         
-        assertEquals(13 - 4, task.getLevel());
+        assertTrue((9 - task.getLevel()) < 0.000001);
     }
     
     @Test
@@ -102,5 +102,14 @@ public class TaskTest {
         task.execute(1);
         
         assertFalse(task1.isBlocked());
+    }
+    
+    @Test
+    public void testBetaRatio(){
+        Task t = new Task(0, 5);
+        double beta = 1.5;
+        t.execute(beta);
+        
+        assertTrue(3.5 - t.getLevel() < 0.000001);
     }
 }

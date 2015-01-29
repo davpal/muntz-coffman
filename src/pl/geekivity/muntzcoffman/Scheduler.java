@@ -43,7 +43,7 @@ class Scheduler {
             public int compare(Task a, Task b) {
                 if(b.isBlocked() || b.isDone()) return -1;
                 if(a.isBlocked() || a.isDone()) return 1;
-                return b.getLevel() - a.getLevel();
+                return (int)(b.getLevel() - a.getLevel());
             }
         });
         

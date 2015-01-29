@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class Task extends Vertex implements Comparable {
     private int time, elapsedTime;
-    private int level;
+    private double level;
     
     public Task(int n, int t){
         super(n);
@@ -33,7 +33,7 @@ public class Task extends Vertex implements Comparable {
         return !parents.isEmpty();
     }
     
-    public void execute(int cpuTime) {
+    public void execute(double cpuTime) {
         elapsedTime -= cpuTime;
         level -= cpuTime;
         if(isDone()){
@@ -46,7 +46,7 @@ public class Task extends Vertex implements Comparable {
         }
     }
     
-    public int getLevel() {
+    public double getLevel() {
         return level;
     }
 
@@ -73,6 +73,6 @@ public class Task extends Vertex implements Comparable {
     
     @Override
     public int compareTo(Object o) {
-       return level - ((Task)o).getLevel();
+       return (int)(level - ((Task)o).getLevel());
     }
 }
