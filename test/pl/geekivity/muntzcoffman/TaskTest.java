@@ -98,6 +98,9 @@ public class TaskTest {
         
         assertTrue(task1.isBlocked());
         assertFalse(task.isBlocked());
+        
+        task.execute(1);
+        
+        assertFalse(task1.isBlocked());
     }
-    
 }

@@ -21,10 +21,14 @@ public class Vertex {
         number = n;
     }
     
-    List<Vertex> parents = new ArrayList<Vertex>();
+    List<Vertex> parents = new ArrayList<>();
     
     public void addParent(Vertex t){
         parents.add(t);
+    }
+    
+    public void removeParent(Task t) {
+        parents.remove(t);
     }
     
     public void addChild(Vertex v){
