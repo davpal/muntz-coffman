@@ -77,7 +77,7 @@ public class SchedulerTest {
     @Test
     public void testSchedulerRunning(){
         Scheduler sched = new Scheduler(matrix, times, 2);
-        
+       
         sched.next();
         
         assertTrue((24 - sched.getTask(0).getLevel()) < 0.000001);

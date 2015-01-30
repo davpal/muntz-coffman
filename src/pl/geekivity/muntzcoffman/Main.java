@@ -39,6 +39,11 @@ public class Main {
         
         Scheduler sched = new Scheduler(matrix, times, m);
         
+        for(int i = 0; i < times.length; ++i)
+            System.out.println((i + 1) + " " + sched.getTask(i).getLevel() + " " +
+                sched.getTask(i).getTime());
+        sched.next();
+        
         while(sched.hasNextTask())
             sched.next();
     }

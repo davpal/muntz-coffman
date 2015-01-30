@@ -59,9 +59,9 @@ class Scheduler {
             ++i;
         }
         
-        System.out.print(time + ": Executing tasks: ");
-        double beta = current.size() / cpuNumber;
-        for(Task t : current) {
+        System.out.print(time + ": ");
+        double beta = ((double)cpuNumber) / current.size();
+        for(Task t : current){
             System.out.print(t);
             t.execute(beta);
             if(t.isDone()){
